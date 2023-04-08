@@ -9,8 +9,8 @@ import Foundation
 import IdentifiedCollections
 import Tagged
 
-struct Time: Identifiable, Codable, Hashable {
-  var id: Tagged<Time, UUID>
+struct TimeEvent: Identifiable, Codable, Hashable {
+  var id: Tagged<TimeEvent, UUID>
   var date: Date
   var duration: Duration
 }
@@ -18,25 +18,36 @@ struct Time: Identifiable, Codable, Hashable {
 struct Project: Identifiable, Codable, Hashable {
   var id: Tagged<Project, UUID>
   var name: String
-  var times: IdentifiedArrayOf<Time>
-  
-  enum Period {
-    case all
-    case day(Date)
-  }
-  
-  func total(filter: Period = .all) -> Duration {
-    let filtered: [Time]
-    switch filter {
-    case .all:
-      filtered = Array(times)
-    case let .day(filterDate):
-      filtered = times.filter {
-        Calendar.autoupdatingCurrent.isDate(filterDate, inSameDayAs: $0.date)
-      }
-    }
-    return filtered.reduce(Duration.zero) { $0 + $1.duration }
-  }  
+  var timeEvents: IdentifiedArrayOf<TimeEvent>
 }
 
+protocol TimeEventFilter: Hashable {
+  func isIncluded(_ date: Date) -> Bool
+}
+
+struct AllTimeEventFilter: TimeEventFilter, Hashable {
+  func isIncluded(_ date: Date) -> Bool { true }
+}
+extension TimeEventFilter where Self == AllTimeEventFilter {
+  static var all: Self { Self() }
+}
+
+struct ExactDayTimeEventFilter: TimeEventFilter, Hashable {
+  let date: Date
+  func isIncluded(_ input: Date) -> Bool {
+    Calendar.autoupdatingCurrent.isDate(input, inSameDayAs: date)
+  }
+}
+extension TimeEventFilter where Self == ExactDayTimeEventFilter {
+  static func day(_ date: Date) -> Self {
+    Self(date: date)
+  }
+}
+
+extension Project {
+  func total(filter: some TimeEventFilter = .all) -> Duration {
+    let filtered: [TimeEvent] = timeEvents.filter { filter.isIncluded($0.date) }
+    return filtered.reduce(Duration.zero) { $0 + $1.duration }
+  }
+}
 
