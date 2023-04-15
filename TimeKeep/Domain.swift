@@ -5,6 +5,7 @@
 //  Created by Ray Fix on 4/8/23.
 //
 
+import Dependencies
 import Foundation
 import IdentifiedCollections
 import Tagged
@@ -51,3 +52,36 @@ extension Project {
   }
 }
 
+final class ProjectTimer {
+  private var accumulated: Duration = .zero
+  private var startTime: Date?
+  
+  @Dependency(\.date.now) var now
+  
+  private var mark: Duration {
+    guard let startTime else { return .zero }
+    return .seconds(now.timeIntervalSince(startTime))
+  }
+  
+  var isRunning: Bool { startTime != nil }
+  
+  func start() {
+    guard !isRunning else { return }
+    startTime = now
+  }
+  
+  var elapsed: Duration {
+    accumulated + mark
+  }
+  
+  func stop() {
+    guard isRunning else { return }
+    accumulated += mark
+    startTime = nil
+  }
+  
+  func reset() {
+    startTime = nil
+    accumulated = .zero
+  }
+}
