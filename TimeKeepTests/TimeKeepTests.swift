@@ -15,7 +15,7 @@ final class TimeKeepTests: XCTestCase, @unchecked Sendable {
   var dateValue: Date = .now
   
   func testProjectTimer() {
-    var generator = DateGenerator { self.dateValue }
+    let generator = DateGenerator { self.dateValue }
     
     let timer = withDependencies {
       $0.date = generator
