@@ -5,6 +5,7 @@
 //  Created by Ray Fix on 4/22/23.
 //
 
+import ComposableArchitecture
 import Dependencies
 import XCTest
 
@@ -47,4 +48,22 @@ final class TimeKeepTests: XCTestCase, @unchecked Sendable {
     dateValue += 400
     XCTAssertEqual(timer.elapsed, .seconds(4))
   }
+  
+  
+  @MainActor
+  func testAddProject() async {
+    let store = TestStore(initialState: ProjectsListFeature.State(projects: [])) {
+      ProjectsListFeature()
+    } withDependencies: { values in
+      values.uuid = .incrementing
+    }
+    
+    await store.send(.addButtonTapped) { state in
+      state.projects = [Project(id: .init(UUID(0)), name: "Project",
+                                timeEvents: [])]
+    }
+    
+  }
 }
+
+

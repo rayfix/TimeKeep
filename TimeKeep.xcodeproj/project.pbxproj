@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5D2E56872AC86DAE0039ADB5 /* ProjectsListFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D2E56862AC86DAE0039ADB5 /* ProjectsListFeature.swift */; };
 		5D4EDBA029E1E0F300DC8D43 /* TimeKeepApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4EDB9F29E1E0F300DC8D43 /* TimeKeepApp.swift */; };
 		5D4EDBA229E1E0F300DC8D43 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4EDBA129E1E0F300DC8D43 /* ContentView.swift */; };
 		5D4EDBA429E1E0F500DC8D43 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5D4EDBA329E1E0F500DC8D43 /* Assets.xcassets */; };
@@ -29,6 +30,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5D2E56862AC86DAE0039ADB5 /* ProjectsListFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsListFeature.swift; sourceTree = "<group>"; };
 		5D4EDB9C29E1E0F300DC8D43 /* TimeKeep.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TimeKeep.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D4EDB9F29E1E0F300DC8D43 /* TimeKeepApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeKeepApp.swift; sourceTree = "<group>"; };
 		5D4EDBA129E1E0F300DC8D43 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -86,6 +88,7 @@
 				5D4EDBA129E1E0F300DC8D43 /* ContentView.swift */,
 				5D4EDBAE29E1E14100DC8D43 /* Domain.swift */,
 				5D4EDBB629E1E3B900DC8D43 /* TimeUtilities.swift */,
+				5D2E56862AC86DAE0039ADB5 /* ProjectsListFeature.swift */,
 				5D4EDBA329E1E0F500DC8D43 /* Assets.xcassets */,
 				5D4EDBA529E1E0F500DC8D43 /* TimeKeep.entitlements */,
 				5D4EDBA629E1E0F500DC8D43 /* Preview Content */,
@@ -217,6 +220,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5D2E56872AC86DAE0039ADB5 /* ProjectsListFeature.swift in Sources */,
 				5D4EDBA229E1E0F300DC8D43 /* ContentView.swift in Sources */,
 				5D4EDBB729E1E3B900DC8D43 /* TimeUtilities.swift in Sources */,
 				5D4EDBA029E1E0F300DC8D43 /* TimeKeepApp.swift in Sources */,
