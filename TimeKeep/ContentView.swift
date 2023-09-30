@@ -5,18 +5,17 @@
 //  Created by Ray Fix on 4/8/23.
 //
 
+import ComposableArchitecture
 import SwiftUI
 
 struct ContentView: View {
-    var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
-        }
-        .padding()
+  var body: some View {
+    NavigationStack {
+      ProjectsListView(store: .init(initialState: ProjectsListFeature.State(projects: [])) {
+        ProjectsListFeature()
+      })
     }
+  }
 }
 
 struct ContentView_Previews: PreviewProvider {
