@@ -16,6 +16,7 @@
 		5D4EDBB729E1E3B900DC8D43 /* TimeUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4EDBB629E1E3B900DC8D43 /* TimeUtilities.swift */; };
 		5D7BDFB52ABF6361002459FF /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 5D7BDFB42ABF6361002459FF /* ComposableArchitecture */; };
 		5D7BDFB82ABF6396002459FF /* Tagged in Frameworks */ = {isa = PBXBuildFile; productRef = 5D7BDFB72ABF6396002459FF /* Tagged */; };
+		5DB03E752ADAEAFE009DDABA /* SelectAllText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB03E742ADAEAFE009DDABA /* SelectAllText.swift */; };
 		5DB651C329F456FA0023A5A1 /* TimeKeepTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB651C229F456FA0023A5A1 /* TimeKeepTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -39,6 +40,7 @@
 		5D4EDBA729E1E0F500DC8D43 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		5D4EDBAE29E1E14100DC8D43 /* Domain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Domain.swift; sourceTree = "<group>"; };
 		5D4EDBB629E1E3B900DC8D43 /* TimeUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeUtilities.swift; sourceTree = "<group>"; };
+		5DB03E742ADAEAFE009DDABA /* SelectAllText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectAllText.swift; sourceTree = "<group>"; };
 		5DB651C029F456FA0023A5A1 /* TimeKeepTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TimeKeepTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5DB651C229F456FA0023A5A1 /* TimeKeepTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeKeepTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -87,6 +89,7 @@
 				5D4EDB9F29E1E0F300DC8D43 /* TimeKeepApp.swift */,
 				5D4EDBA129E1E0F300DC8D43 /* ContentView.swift */,
 				5D4EDBAE29E1E14100DC8D43 /* Domain.swift */,
+				5DB03E742ADAEAFE009DDABA /* SelectAllText.swift */,
 				5D4EDBB629E1E3B900DC8D43 /* TimeUtilities.swift */,
 				5D2E56862AC86DAE0039ADB5 /* ProjectsListFeature.swift */,
 				5D4EDBA329E1E0F500DC8D43 /* Assets.xcassets */,
@@ -222,6 +225,7 @@
 			files = (
 				5D2E56872AC86DAE0039ADB5 /* ProjectsListFeature.swift in Sources */,
 				5D4EDBA229E1E0F300DC8D43 /* ContentView.swift in Sources */,
+				5DB03E752ADAEAFE009DDABA /* SelectAllText.swift in Sources */,
 				5D4EDBB729E1E3B900DC8D43 /* TimeUtilities.swift in Sources */,
 				5D4EDBA029E1E0F300DC8D43 /* TimeKeepApp.swift in Sources */,
 				5D4EDBAF29E1E14100DC8D43 /* Domain.swift in Sources */,

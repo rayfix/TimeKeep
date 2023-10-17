@@ -10,14 +10,18 @@ import Foundation
 import IdentifiedCollections
 import Tagged
 
+typealias TimeEventID = Tagged<TimeEvent, UUID>
+
 struct TimeEvent: Identifiable, Codable, Hashable {
-  var id: Tagged<TimeEvent, UUID>
+  var id: TimeEventID
   var date: Date
   var duration: Duration
 }
 
+typealias ProjectID = Tagged<Project, UUID>
+
 struct Project: Identifiable, Codable, Hashable {
-  var id: Tagged<Project, UUID>
+  var id: ProjectID
   var name: String
   var timeEvents: IdentifiedArrayOf<TimeEvent>
 }
