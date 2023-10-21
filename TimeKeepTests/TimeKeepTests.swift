@@ -11,7 +11,7 @@ import XCTest
 
 @testable import TimeKeep
 
-final class TimeKeepTests: XCTestCase, @unchecked Sendable {
+final class TimeKeepTests: XCTestCase {
 
   var dateValue: Date = .now
   
@@ -49,7 +49,6 @@ final class TimeKeepTests: XCTestCase, @unchecked Sendable {
     XCTAssertEqual(timer.elapsed, .seconds(4))
   }
   
-  
   @MainActor
   func testAddProject() async {
     let store = TestStore(initialState: ProjectsListFeature.State(projects: [])) {
@@ -62,7 +61,6 @@ final class TimeKeepTests: XCTestCase, @unchecked Sendable {
       state.projects = [Project(id: .init(UUID(0)), name: "Project",
                                 timeEvents: [])]
     }
-    
   }
 }
 

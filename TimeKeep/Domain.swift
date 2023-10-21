@@ -11,13 +11,14 @@ import IdentifiedCollections
 import Tagged
 
 struct TimeEvent: Identifiable, Codable, Hashable {
-  var id: Tagged<TimeEvent, UUID>
+  var id: Tagged<Self, UUID>
   var date: Date
   var duration: Duration
 }
 
+
 struct Project: Identifiable, Codable, Hashable {
-  var id: Tagged<Project, UUID>
+  var id: Tagged<Self, UUID>
   var name: String
   var timeEvents: IdentifiedArrayOf<TimeEvent>
 }
