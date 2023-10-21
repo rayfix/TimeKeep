@@ -14,12 +14,16 @@ struct ProjectsListFeature: Reducer {
     var projects: IdentifiedArrayOf<Project>
 
     enum Field: Hashable {
-      case project(ProjectID)
+      case project(Project.ID)
     }
     
     @BindingState var focus: Field?
-    var projectIDToEdit: ProjectID?
     @BindingState var projectName: String = ""
+    
+    // Computed state
+    var editProjectNameID: Project.ID? {
+      CasePath(Field.project).extract(from: focus)
+    }
   }
   
   enum Action: Equatable, BindableAction {
@@ -45,13 +49,14 @@ struct ProjectsListFeature: Reducer {
         return .none
       case .editProjectName(let project):
         state.projectName = project.name
-        state.projectIDToEdit = project.id
         state.focus = .project(project.id)
         return .none
       case .editProjectNameSubmit:
-        state.focus = nil
-        guard state.projectIDToEdit != nil else { return .none }
-        state.projectIDToEdit = nil
+        guard let id = state.editProjectNameID,
+         var project = state.projects[id: id] else { return .none }
+        project.name = state.projectName
+        state.projects[id: id] = project
+                state.focus = nil
         return .none
       }
     }
@@ -68,19 +73,21 @@ struct ProjectsListView: View {
       List {
         Section {
           ForEach(viewStore.projects) { project in
-            if viewStore.projectIDToEdit == project.id {
+            if viewStore.editProjectNameID == project.id {
               TextField("", text: viewStore.$projectName)
                 .focused($focus, equals: ProjectsListFeature.State.Field.project(project.id))
                 .selectAllTextOnBeginEditing()
-                .font(.headline)
                 .onSubmit {
                   viewStore.send(.editProjectNameSubmit)
                 }
             } else {
-              Text(project.name).font(.headline)
-                .padding(EdgeInsets(top: 0, leading: 0, bottom: 1, trailing: 0))
+              Text(project.name)
+                .onTapGesture {
+                  viewStore.send(.editProjectName(project))
+                }
             }
           }
+          .font(.headline)
         }
       }
       .bind(viewStore.$focus, to: $focus)
