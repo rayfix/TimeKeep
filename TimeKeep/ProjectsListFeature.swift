@@ -24,6 +24,10 @@ struct ProjectsListFeature: Reducer {
     var editProjectNameID: Project.ID? {
       CasePath(Field.project).extract(from: focus)
     }
+    
+    var isAddDisabled: Bool {
+      focus != nil
+    }
   }
   
   enum Action: Equatable, BindableAction {
@@ -81,10 +85,14 @@ struct ProjectsListView: View {
                   viewStore.send(.editProjectNameSubmit)
                 }
             } else {
-              Text(project.name)
-                .onTapGesture {
-                  viewStore.send(.editProjectName(project))
-                }
+              HStack {
+                Text(project.name)
+                  .onTapGesture {
+                    viewStore.send(.editProjectName(project))
+                  }
+                Spacer()
+                Text(project.total().formatted())
+              }
             }
           }
           .font(.headline)
@@ -97,7 +105,7 @@ struct ProjectsListView: View {
         } label: {
           Image(systemName: "plus")
             .accessibilityLabel("Add note")
-        }
+        }.disabled(viewStore.isAddDisabled)
       }
     }
   }
@@ -106,7 +114,7 @@ struct ProjectsListView: View {
 #Preview {
   NavigationStack {
     ProjectsListView(store: .init(initialState:
-                                    ProjectsListFeature.State(projects: [])) {
+                                    ProjectsListFeature.State(projects: [.mock])) {
       ProjectsListFeature()
     })
   }
