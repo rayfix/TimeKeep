@@ -23,6 +23,21 @@ struct Project: Identifiable, Codable, Hashable {
   var timeEvents: IdentifiedArrayOf<TimeEvent>
 }
 
+extension Project {
+  static var mock: Self {
+    Self(id: .init(uuidString: "8f19e1f2-7022-11ee-a175-6f3b7445f7f6")!,
+         name: "Study Swift",
+         timeEvents: [
+          .init(id: .init(uuidString: "99c9f98e-7022-11ee-bd6a-8fdd88bbadd2")!,
+                date: .date(year: 2023, month: 9, day: 16)!,
+                duration: .minutes(125)),
+          .init(id: .init(uuidString: "99c9f98e-7022-11ee-bd6a-8fdd88bbadd3")!,
+                date: .date(year: 2023, month: 9, day: 16)!,
+                duration: .minutes(5))
+         ])
+  }
+}
+
 protocol TimeEventFilter: Hashable {
   func isIncluded(_ date: Date) -> Bool
 }
