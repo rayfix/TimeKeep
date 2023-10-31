@@ -57,10 +57,35 @@ final class TimeKeepTests: XCTestCase {
       values.uuid = .incrementing
     }
     
+    let project = Project(id: .init(UUID(0)), name: "Project",
+                          timeEvents: [])
+    
     await store.send(.addButtonTapped) { state in
-      state.projects = [Project(id: .init(UUID(0)), name: "Project",
-                                timeEvents: [])]
+      state.projects = [project]
     }
+    
+    await store.receive(.editProjectName(project)) { state in
+      state.focus = .project(project.id)
+      state.projectName = "Project"
+    }
+    
+    store.assert { state in
+      XCTAssert(state.isAddDisabled)
+    }
+    
+    await store.send(.set(\.$projectName, "Study Swift")) { state in
+      state.projectName = "Study Swift"
+    }
+    
+    await store.send(.editProjectNameSubmit) { state in
+      state.focus = nil
+      state.projects = [Project(id: .init(UUID(0)), name: "Study Swift", timeEvents: [])]
+      state.projectName = ""
+    }
+    
+    store.assert { state in
+      XCTAssertFalse(state.isAddDisabled)
+    }    
   }
 }
 

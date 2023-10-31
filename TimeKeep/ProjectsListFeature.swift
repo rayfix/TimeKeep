@@ -60,7 +60,8 @@ struct ProjectsListFeature: Reducer {
          var project = state.projects[id: id] else { return .none }
         project.name = state.projectName
         state.projects[id: id] = project
-                state.focus = nil
+        state.focus = nil
+        state.projectName = ""
         return .none
       }
     }
@@ -70,7 +71,6 @@ struct ProjectsListFeature: Reducer {
 struct ProjectsListView: View {
   let store: StoreOf<ProjectsListFeature>
   @FocusState var focus: ProjectsListFeature.State.Field?
-
 
   var body: some View {
     WithViewStore(store, observe: { $0 }) { viewStore in
@@ -104,7 +104,7 @@ struct ProjectsListView: View {
           viewStore.send(.addButtonTapped, animation: .default)
         } label: {
           Image(systemName: "plus")
-            .accessibilityLabel("Add note")
+            .accessibilityLabel("Add project")
         }.disabled(viewStore.isAddDisabled)
       }
     }
@@ -113,8 +113,8 @@ struct ProjectsListView: View {
 
 #Preview {
   NavigationStack {
-    ProjectsListView(store: .init(initialState:
-                                    ProjectsListFeature.State(projects: [.mock])) {
+    ProjectsListView(store: 
+        .init(initialState:ProjectsListFeature.State(projects: [.mock])) {
       ProjectsListFeature()
     })
   }
